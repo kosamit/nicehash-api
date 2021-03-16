@@ -32,7 +32,7 @@ function ownKeys(object, enumerableOnly) {
     if (Object.getOwnPropertySymbols) {
         var symbols = Object.getOwnPropertySymbols(object)
         if (enumerableOnly)
-            symbols = symbols.filter(function(sym) {
+            symbols = symbols.filter(function (sym) {
                 return Object.getOwnPropertyDescriptor(object, sym).enumerable
             })
         keys.push.apply(keys, symbols)
@@ -44,7 +44,7 @@ function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i] != null ? arguments[i] : {}
         if (i % 2) {
-            ownKeys(Object(source), true).forEach(function(key) {
+            ownKeys(Object(source), true).forEach(function (key) {
                 _defineProperty(target, key, source[key])
             })
         } else if (Object.getOwnPropertyDescriptors) {
@@ -53,7 +53,7 @@ function _objectSpread(target) {
                 Object.getOwnPropertyDescriptors(source)
             )
         } else {
-            ownKeys(Object(source)).forEach(function(key) {
+            ownKeys(Object(source)).forEach(function (key) {
                 Object.defineProperty(
                     target,
                     key,
@@ -88,9 +88,7 @@ function createNonce() {
         length = 32
 
     do {
-        s += Math.random()
-            .toString(36)
-            .substr(2)
+        s += Math.random().toString(36).substr(2)
     } while (s.length < length)
 
     s = s.substr(0, length)
@@ -156,7 +154,7 @@ class NicehHashApi {
         return (0, _requestPromiseNative.default)({
             uri: this.host + '/api/v2/time',
             json: true,
-        }).then(res => {
+        }).then((res) => {
             this.localTimeDiff = res.serverTime - +new Date()
             this.time = res.serverTime
             return res
@@ -229,11 +227,11 @@ class NicehHashApi {
     testAuthorization() {
         if (!!this.key && !!this.org && !!this.secret) {
             this.getTime()
-                .then(res => {
+                .then((res) => {
                     log('good to go 200', res)
                     return true
                 })
-                .catch(err => {
+                .catch((err) => {
                     throw new Error('Something went wrong... '.concat(err))
                 })
         } else {
@@ -246,7 +244,7 @@ class NicehHashApi {
     async getCurrentGlobalStats() {
         this.getTime()
             .then(() => this.get('/main/api/v2/public/stats/global/current'))
-            .then(res => {
+            .then((res) => {
                 if (res.algos) {
                     for (let stat of res.algos) {
                         stat.algo = _algorithms.default[stat.a]
@@ -255,7 +253,7 @@ class NicehHashApi {
                     return res.algos
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'Failed to get current global stats: '.concat(err)
                 )
@@ -270,7 +268,7 @@ class NicehHashApi {
     async getCurrentGlobalStats24h() {
         this.getTime()
             .then(() => this.get('/main/api/v2/public/stats/global/24h'))
-            .then(res => {
+            .then((res) => {
                 if (res.algos) {
                     for (let stat of res.algos) {
                         stat.algo = _algorithms.default[stat.a]
@@ -279,7 +277,7 @@ class NicehHashApi {
                     return res.algos
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'Failed to get current global stats 24h: '.concat(err)
                 )
@@ -321,10 +319,10 @@ class NicehHashApi {
                     query,
                 })
             )
-            .then(res => {
+            .then((res) => {
                 return res.list
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'Failed to get all orders for alogrithm: '.concat(err)
                 )
@@ -348,10 +346,10 @@ class NicehHashApi {
     async getSingleMultiAlgoInfo() {
         this.getTime()
             .then(() => this.get('/main/api/v2/public/simplemultialgo/info/'))
-            .then(res => {
+            .then((res) => {
                 return res.miningAlgorithms
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'Failed to get single multi algo info '.concat(err)
                 )
@@ -361,10 +359,10 @@ class NicehHashApi {
     async getBuyInfo() {
         this.getTime()
             .then(() => this.get('/main/api/v2/public/buy/info/'))
-            .then(res => {
+            .then((res) => {
                 return res.miningAlgorithms
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get buy info: '.concat(err))
             })
     }
@@ -394,10 +392,10 @@ class NicehHashApi {
                     query,
                 })
             )
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get balance: '.concat(err))
             })
     }
@@ -405,10 +403,10 @@ class NicehHashApi {
     async getExchangeSetting() {
         this.getTime()
             .then(() => this.get('/exchange/api/v2/info/status'))
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get exchange setting: '.concat(err))
             })
     } // not allowed in the U.S.
@@ -432,11 +430,11 @@ class NicehHashApi {
                     query,
                 })
             )
-            .then(res => {
+            .then((res) => {
                 log(res)
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get exchange order book: ' + err)
             })
     }
@@ -444,10 +442,10 @@ class NicehHashApi {
     async getAlgoSetting() {
         this.getTime()
             .then(() => this.get('/main/api/v2/mining/algorithms'))
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get algorithm setting: ' + err)
             })
     } //----------------------THEM POOLS----------------------------
@@ -492,10 +490,10 @@ class NicehHashApi {
                     body,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to create or edit pool: '.concat(err))
             })
     }
@@ -505,10 +503,10 @@ class NicehHashApi {
             .then(() => {
                 return this.get('/main/api/v2/pool/'.concat(poolId))
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get pool info: '.concat(err))
             })
     } // delete pool - pass poolId
@@ -518,10 +516,10 @@ class NicehHashApi {
             .then(() => {
                 return this.delete('/main/api/v2/pool/'.concat(poolId))
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to delete pool: '.concat(err))
             })
     }
@@ -545,10 +543,10 @@ class NicehHashApi {
                     query,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to get pools: '.concat(err))
             })
     }
@@ -577,10 +575,10 @@ class NicehHashApi {
                     body,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to verify pool: '.concat(err))
             })
     } //---------------------- HASHPOWER ORDERS ----------------------------
@@ -639,10 +637,10 @@ class NicehHashApi {
                     query,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to create order: '.concat(err))
             })
     }
@@ -654,12 +652,12 @@ class NicehHashApi {
    * @param {string|number} [price=] - Price in BTC/GH/day or BTC/TH/day;
    * @param {string} marketFactor - (Big decimal scaled to 8 decimal points )Used display market factor (numeric)
    * @param {string} displayMarketFactor - Used display market factor
-   * @param {string|} amount=0.005  - Pay amount in BTC;
+   * @param {string} amount=0.005  - Pay amount in BTC;
    * @param {string} algorithm - - Algorithm name or ID
    * @param {number} market - 1 for Europe (NiceHash), 2 for USA (WestHash)
    * @param {string|number} [code] - This parameter is optional. You have to provide it if you have 2FA enabled. You can use NiceHash2FA Java application to generate codes.
    * @async
-   * @returns {Promise<Object> created order}
+   * @returns {Promise<Object>} created order
    * 
    * 
   amount:string (Big decimal scaled to 8 decimal points)Amount in BTC ...
@@ -711,10 +709,10 @@ class NicehHashApi {
                     body,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to create order: '.concat(err))
             })
     }
@@ -736,10 +734,10 @@ class NicehHashApi {
                     }
                 )
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to refill order: '.concat(err))
             })
     }
@@ -771,10 +769,10 @@ class NicehHashApi {
                     }
                 )
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to update price and limit '.concat(err))
             })
     }
@@ -786,10 +784,10 @@ class NicehHashApi {
                     '/main/api/v2/hashpower/order/'.concat(orderId, '/')
                 )
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Failed to cancel order: '.concat(err))
             })
     }
@@ -806,7 +804,8 @@ class NicehHashApi {
         log('not built')
     } //----------------------------- Withdrawl ------------------------------------
 
-    async createWithdrawlAddress(type, address, name, currency) { // token, optional 2FA
+    async createWithdrawlAddress(type, address, name, currency) {
+        // token, optional 2FA
         let body = {
             type: type.toUpperCase(),
             address,
@@ -819,10 +818,10 @@ class NicehHashApi {
                     body,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Fail create withdrawl address '.concat(err))
             })
     }
@@ -839,10 +838,10 @@ class NicehHashApi {
                     body,
                 })
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Fail create withdrawl address '.concat(err))
             })
     }
@@ -870,10 +869,10 @@ class NicehHashApi {
                     }
                 )
             })
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error('Fail get withdrawal addys '.concat(err))
             })
     } // Deposit Address
@@ -888,10 +887,10 @@ class NicehHashApi {
                     query,
                 })
             )
-            .then(res => {
+            .then((res) => {
                 return res
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'Failed to get deposit addresses, pass in currency: '.concat(
                         err
@@ -901,7 +900,7 @@ class NicehHashApi {
     }
 } //-----------------------------Helper Functions------------------------------------
 
-const checkAlgo = algoName => {
+const checkAlgo = (algoName) => {
     if (typeof algoName === 'string') {
         return convertAlgoToID(algoName)
     }
@@ -909,13 +908,13 @@ const checkAlgo = algoName => {
     return algoName
 }
 
-const convertIDtoAlgo = algo => {
+const convertIDtoAlgo = (algo) => {
     if (typeof algo === 'number') {
         return _algorithms.default[algo].toUpperCase()
     }
 }
 
-const convertAlgoToID = algo => {
+const convertAlgoToID = (algo) => {
     if (typeof algo === 'string') {
         for (let id in _algorithms.default) {
             if (_algorithms.default[id].toLowerCase() === algo.toLowerCase()) {
@@ -927,7 +926,7 @@ const convertAlgoToID = algo => {
     } else return algo
 }
 
-const convertLocation = location => {
+const convertLocation = (location) => {
     switch (location) {
         case 1:
             return 'EU'
