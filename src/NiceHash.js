@@ -58,9 +58,9 @@ const getAuthHeader = (apiKey, apiSecret, time, nonce, organizationId = '', requ
 
 class NiceHash {
   constructor(settings = {}) {
-      let { locale, api_key, api_secret, api_id } = settings
+      let { api_host, locale, api_key, api_secret, api_id } = settings
       this.locale = locale || 'en'
-      this.host = 'https://api2.nicehash.com';
+      this.host = api_host || 'https://api2.nicehash.com';
       this.key = api_key
       this.secret = api_secret
       this.org = api_id
