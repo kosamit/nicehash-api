@@ -1,6 +1,6 @@
 {
     "name": "nicehash-api",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "javascript wrapper for nicehash api",
     "main": "lib/index.js",
     "scripts": {
@@ -10,7 +10,7 @@
         "test-all": "jest --runInBand",
         "test": "jest api.test.js"
     },
-    "author": "iameddieyayaya",
+    "author": "kosamit",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/oipwg/nicehash-api.git"
