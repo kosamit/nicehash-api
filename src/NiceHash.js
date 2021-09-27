@@ -95,7 +95,7 @@ class NiceHash {
               'X-Request-Id': nonce,
               'X-User-Agent': 'Trinity',
               'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin': '*'
+              'Access-Control-Allow-Origin': '*',
               'X-Time': timestamp,
               'X-Nonce': nonce,
               'X-User-Lang': this.locale,
