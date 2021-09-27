@@ -286,6 +286,17 @@ class NiceHash {
       }
     }
 
+  async getBalanceAndFiat(fiat) {
+      this.getTime()
+          .then(() => this.get('/main/api/v2/accounting/accounts2?fiat=' + fiat))
+          .then(res => {
+              return res
+          })
+          .catch(err => {
+              throw new Error(`Failed to get balance and fiat: ${err}`)
+          })
+    }
+
   async getExchangeSetting() {
       this.getTime()
           .then(() => this.get('/exchange/api/v2/info/status'))
