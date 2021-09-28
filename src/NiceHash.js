@@ -92,14 +92,14 @@ class NiceHash {
           uri: this.host + pathOnly,
           method: method,
           headers: {
-              'X-Request-Id': nonce,
-              'X-User-Agent': 'Trinity',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Access-Control-Allow-Origin': '*',
+              'User-Agent': 'Request-Promise'
+              // 'X-Requested-With': 'XMLHttpRequest',
+              // 'Access-Control-Allow-Origin': '*',
+              // 'X-User-Lang': this.locale,
               'X-Time': timestamp,
               'X-Nonce': nonce,
-              'X-User-Lang': this.locale,
               'X-Organization-Id': this.org,
+              'X-Request-Id': nonce,
               'X-Auth': getAuthHeader(
                   this.key,
                   this.secret,
