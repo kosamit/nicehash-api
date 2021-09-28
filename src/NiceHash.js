@@ -92,7 +92,7 @@ class NiceHash {
           uri: this.host + pathOnly,
           method: method,
           headers: {
-              'User-Agent': 'Request-Promise'
+              'User-Agent': 'Request-Promise',
               // 'X-Requested-With': 'XMLHttpRequest',
               // 'Access-Control-Allow-Origin': '*',
               // 'X-User-Lang': this.locale,
